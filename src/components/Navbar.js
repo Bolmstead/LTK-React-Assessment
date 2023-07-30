@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { iconStyle, linkStyle, navbarStyle } from "../styles";
+import { iconStyle, linkStyle, navbarStyle } from "../styles/styles";
 
 export default function Navbar() {
   return (
@@ -18,13 +18,13 @@ export default function Navbar() {
                 style={iconStyle}
                 className="logo"
                 src="images/LtkLogo.png"
+                alt="logo"
               ></img>
             </Link>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Welcome!
             </Typography>
-            {/* <Button color="inherit"> Contact</Button>
-            <Button color="inherit"> Profile</Button> */}
+
             <Button color="inherit">
               {" "}
               <Link to="/" style={linkStyle}>
@@ -33,7 +33,7 @@ export default function Navbar() {
             </Button>
             <Button color="inherit">
               {" "}
-              <Link to="/create-todo" style={linkStyle}>
+              <Link to="/create-todo" variant="contained" style={linkStyle}>
                 Create To Do
               </Link>
             </Button>

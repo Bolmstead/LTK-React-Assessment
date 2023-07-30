@@ -3,22 +3,31 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import { inputContainerStyle, inputFieldStyle, pageStyle } from "../styles";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import {
+  inputContainerStyle,
+  inputFieldStyle,
+  pageStyle,
+} from "../styles/styles";
+
+import { useDispatch } from "react-redux";
+import ToDoList from "../components/ToDoList";
 
 export default function ToDoForm() {
+  const dispatch = useDispatch();
+
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
-  const [todo, setTodo] = useState(null);
+  const [title, setTitle] = useState(null);
 
-  function submitForm(values) {
-    console.log(values);
+  function createTodo() {
+    const id = uuidv4();
+    let newTodo = { firstName, lastName, email, title, id };
+    console.log("🚀 ~ file: ToDoForm.js:29 ~ ToDoForm ~ id:", id);
+    dispatch({ type: "ADD_TO_DO", payload: newTodo });
   }
-
-  useEffect(() => {
-    console.log(firstName, lastName, email, todo);
-  }, [firstName, lastName, email, todo]);
 
   return (
     <Box sx={{ flexGrow: 1 }} style={pageStyle}>
@@ -33,12 +42,12 @@ export default function ToDoForm() {
 
         <Grid item style={inputContainerStyle} xs={12}>
           <TextField
-            id="todo"
+            id="title"
             label="To Do Title"
-            name="todo"
+            name="title"
             placeholder="TextHere"
             style={inputFieldStyle}
-            onChange={(e) => setTodo(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />{" "}
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
@@ -72,10 +81,11 @@ export default function ToDoForm() {
           />
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
-          <Button variant="contained" type="submit" onClick={submitForm}>
+          <Button variant="contained" type="submit" onClick={createTodo}>
             Submit
           </Button>{" "}
         </Grid>
+        <ToDoList />
       </Grid>
     </Box>
   );

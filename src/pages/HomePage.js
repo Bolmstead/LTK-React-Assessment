@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { pageStyle } from "../styles";
+import { pageStyle } from "../styles/styles";
 
 export default function HomePage() {
   return (

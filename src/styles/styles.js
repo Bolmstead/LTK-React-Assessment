@@ -1,3 +1,8 @@
+// Navbar Styles
+export const navbarStyle = {
+  backgroundColor: "#262626",
+};
+
 export const linkStyle = {
   textDecoration: "none",
   color: "white",
@@ -9,16 +14,14 @@ export const iconStyle = {
   margin: "0px 15px",
 };
 
-export const navbarStyle = {
-  backgroundColor: "#262626",
-};
-
+// Generic page container style
 export const pageStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 };
 
+// Form styles
 export const inputContainerStyle = {
   display: "flex",
   justifyContent: "center",
@@ -27,4 +30,14 @@ export const inputContainerStyle = {
 
 export const inputFieldStyle = {
   width: "300px",
+};
+
+// To Do Card styles
+export const todoListStyle = {
+  margin: "10px",
+};
+
+export const todoCardButtonContainerStyle = {
+  display: "flex",
+  justifyContent: "flex-end",
 };
