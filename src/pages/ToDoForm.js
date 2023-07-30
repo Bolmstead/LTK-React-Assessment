@@ -4,19 +4,17 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import ToDoList from "../components/ToDoList";
 import {
   inputContainerStyle,
   inputFieldStyle,
   pageStyle,
 } from "../styles/styles";
 
-import { useDispatch } from "react-redux";
-import ToDoList from "../components/ToDoList";
-
 export default function ToDoForm() {
   const dispatch = useDispatch();
-
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -25,7 +23,6 @@ export default function ToDoForm() {
   function createTodo() {
     const id = uuidv4();
     let newTodo = { firstName, lastName, email, title, id };
-    console.log("🚀 ~ file: ToDoForm.js:29 ~ ToDoForm ~ id:", id);
     dispatch({ type: "ADD_TO_DO", payload: newTodo });
   }
 
@@ -35,8 +32,8 @@ export default function ToDoForm() {
         <Grid item style={inputContainerStyle} xs={12}>
           <Box sx={{ mt: 4 }} style={pageStyle}>
             <Typography variant="h4" component="h1" gutterBottom>
-              Create a To Do{" "}
-            </Typography>{" "}
+              Create a To Do
+            </Typography>
           </Box>
         </Grid>
 
@@ -48,7 +45,7 @@ export default function ToDoForm() {
             placeholder="TextHere"
             style={inputFieldStyle}
             onChange={(e) => setTitle(e.target.value)}
-          />{" "}
+          />
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
           <TextField
@@ -58,7 +55,7 @@ export default function ToDoForm() {
             placeholder="TextHere"
             style={inputFieldStyle}
             onChange={(e) => setFirstName(e.target.value)}
-          />{" "}
+          />
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
           <TextField
@@ -68,7 +65,7 @@ export default function ToDoForm() {
             placeholder="TextHere"
             style={inputFieldStyle}
             onChange={(e) => setLastName(e.target.value)}
-          />{" "}
+          />
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
           <TextField
@@ -81,9 +78,14 @@ export default function ToDoForm() {
           />
         </Grid>
         <Grid item style={inputContainerStyle} xs={12}>
-          <Button variant="contained" type="submit" onClick={createTodo}>
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={createTodo}
+            disabled={!firstName || !lastName || !title || !email}
+          >
             Submit
-          </Button>{" "}
+          </Button>
         </Grid>
         <ToDoList />
       </Grid>

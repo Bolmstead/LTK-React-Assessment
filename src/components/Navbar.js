@@ -26,13 +26,11 @@ export default function Navbar() {
             </Typography>
 
             <Button color="inherit">
-              {" "}
               <Link to="/" style={linkStyle}>
                 Home
               </Link>
             </Button>
             <Button color="inherit">
-              {" "}
               <Link to="/create-todo" variant="contained" style={linkStyle}>
                 Create To Do
               </Link>
